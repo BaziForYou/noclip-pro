@@ -9,6 +9,7 @@
 - Customizable languages
 - Customizable keybindings
 - Two Camera Modes
+- Working vehicles alpha (transparency)
 
 ## Download & Installation
 
