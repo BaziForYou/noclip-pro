@@ -28,8 +28,8 @@ git clone https://github.com/derp-jsx/noclip-pro.git
 
 ### Installation
 
-- Add the resource to your `server.cfg` to make sure it's started at server startup
 - Configure `config.lua` and `locales` to fit your needs
+- Add the resource to your `server.cfg` to make sure it's started at server startup:
 
 ```
 ensure noclip-pro
