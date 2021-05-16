@@ -34,6 +34,12 @@ git clone https://github.com/derp-jsx/noclip-pro.git
 ensure noclip-pro
 ```
 
+
+## Screenshot(s)
+
+![noclip screenshot](https://user-images.githubusercontent.com/15928886/118410390-7c7bd180-b68f-11eb-8af7-96bb46cf6b84.jpg)
+
+
 ## Legal
 
 ### License
