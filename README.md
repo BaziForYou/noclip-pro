@@ -4,7 +4,7 @@
 
 ## Features
 
-- vMenu-like noclip
+- vMenu-like NoClip
 - Customizable speeds
 - Customizable languages
 - Customizable keybindings
