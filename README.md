@@ -23,7 +23,7 @@ git clone https://github.com/derp-jsx/noclip-pro.git
 
 ### Manually
 
-- Download the latest release
+- Go to the [releases page](https://github.com/derp-jsx/noclip-pro/releases "Releases page") and download the latest release
 - Put it in the `resource` directory
 
 ### Installation
