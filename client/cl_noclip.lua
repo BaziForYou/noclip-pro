@@ -38,6 +38,7 @@ Citizen.CreateThread(function()
                 end
             end
 
+            if Config.FrozenPosition then SetEntityHeading(noclipEntity, GetEntityHeading(noclipEntity)+180) end
             SetEntityCollision(noclipEntity, not noclipActive, not noclipActive)
             FreezeEntityPosition(noclipEntity, noclipActive)
             SetEntityInvincible(noclipEntity, noclipActive)
@@ -141,11 +142,19 @@ Citizen.CreateThread(function()
             DisableControlAction(0, 74, true)
 
 			if IsDisabledControlPressed(0, Config.Controls.goForward) then
-                yoff = Config.Offsets.y
+                if Config.FrozenPosition then
+                    yoff = -Config.Offsets.y
+                else 
+                    yoff = Config.Offsets.y
+                end
 			end
 			
             if IsDisabledControlPressed(0, Config.Controls.goBackward) then
-                yoff = -Config.Offsets.y
+                if Config.FrozenPosition then
+                    yoff = Config.Offsets.y
+                else
+                    yoff = -Config.Offsets.y
+                end
 			end
 
             if not FollowCamMode and IsDisabledControlPressed(0, Config.Controls.turnLeft) then
@@ -167,13 +176,21 @@ Citizen.CreateThread(function()
             local newPos = GetOffsetFromEntityInWorldCoords(noclipEntity, 0.0, yoff * (currentSpeed + 0.3), zoff * (currentSpeed + 0.3))
             local heading = GetEntityHeading(noclipEntity)
             SetEntityVelocity(noclipEntity, 0.0, 0.0, 0.0)
-            SetEntityRotation(noclipEntity, 0.0, 0.0, 0.0, 0, false)
+            if Config.FrozenPosition then
+                SetEntityRotation(noclipEntity, 0.0, 0.0, 180.0, 0, false)
+            else 
+                SetEntityRotation(noclipEntity, 0.0, 0.0, 0.0, 0, false)
+            end
             if(FollowCamMode) then
                 SetEntityHeading(noclipEntity, GetGameplayCamRelativeHeading());
             else
                 SetEntityHeading(noclipEntity, heading);
             end
-            SetEntityCoordsNoOffset(noclipEntity, newPos.x, newPos.y, newPos.z, noclipActive, noclipActive, noclipActive)
+            if Config.FrozenPosition then
+                SetEntityCoordsNoOffset(noclipEntity, newPos.x, newPos.y, newPos.z, not noclipActive, not noclipActive, not noclipActive)
+            else 
+                SetEntityCoordsNoOffset(noclipEntity, newPos.x, newPos.y, newPos.z, noclipActive, noclipActive, noclipActive)
+            end
             SetLocalPlayerVisibleLocally(true);
         end
     end

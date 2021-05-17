@@ -3,7 +3,7 @@ Config = {
 
     Controls = {
         -- FiveM Controls: https://docs.fivem.net/game-references/controls/
-        openKey = 214, -- F2
+        openKey = 214, -- CANC
         goUp = 85, -- Q
         goDown = 48, -- Z
         turnLeft = 34, -- A
@@ -29,4 +29,6 @@ Config = {
         z = 0.2, -- Upward and downward movement speed multiplier
         h = 3, -- Rotation movement speed multiplier
     },
+
+    FrozenPosition = false, -- Toggle "frozen" position for noclipping player
 }
