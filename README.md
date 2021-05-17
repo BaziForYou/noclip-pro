@@ -4,12 +4,13 @@
 
 ## Features
 
-- vMenu-like NoClip
+- NoClip UI inspired by vMenu (thanks to [Tom Grobbe](https://github.com/TomGrobbe "Tom Grobbe GitHub page"))
 - Customizable speeds
 - Customizable languages
 - Customizable keybindings
-- Two Camera Modes
-- Working vehicles alpha (transparency)
+- Camera modes
+- Vehicles transparency
+- Frozen position toggle
 
 ## Download & Installation
 
