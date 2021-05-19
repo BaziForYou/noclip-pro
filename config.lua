@@ -30,7 +30,9 @@ Config = {
         h = 3, -- Rotation movement speed multiplier
     },
 
-    FrozenPosition = false, -- Toggle "frozen" position for noclipping player
+    FrozenPosition = false, -- Toggle "frozen" position while noclip is active
+
+    DisableWeaponWheel = false, -- Disable weapon wheel while noclip is active
 
     -- Permissions management (adding a group or a steam id requires a resource restart [or just wait a regular server restart :-)])
 

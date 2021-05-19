@@ -20,6 +20,13 @@ Citizen.CreateThread(function()
         end
 
         if noclipActive then
+            if Config.DisableWeaponWheel then
+                DisableControlAction(0, 37, true)
+                if(IsPedArmed(GetPlayerPed(-1), 1 | 2 | 4)) then 
+                    SetCurrentPedWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_UNARMED"), 1)
+                end
+            end
+
             if not IsHudHidden() then
                 PushScaleformMovieFunction(scaleform, "CLEAR_ALL")
                 PopScaleformMovieFunctionVoid()
