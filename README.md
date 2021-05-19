@@ -2,6 +2,11 @@
 
 ### Standalone NoClip for FiveM inspired by vMenu
 
+## Requirements
+
+- [mysql-async](https://github.com/brouznouf/fivem-mysql-async)
+- [async](https://github.com/ESX-Org/async)
+
 ## Features
 
 - NoClip UI inspired by vMenu (thanks to [Tom Grobbe](https://github.com/TomGrobbe "Tom Grobbe GitHub page"))
@@ -11,6 +16,7 @@
 - Camera modes
 - Vehicles transparency
 - Frozen position toggle
+- Permissions management (steam id and groups)
 
 ## Download & Installation
 

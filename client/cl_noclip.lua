@@ -1,3 +1,5 @@
+local noclipActive = false
+
 Citizen.CreateThread(function()
 
     local scaleform = RequestScaleformMovie("INSTRUCTIONAL_BUTTONS")
@@ -6,45 +8,15 @@ Citizen.CreateThread(function()
         Citizen.Wait(1)
     end
     
-    noclipActive = false
-    index = 1
-
-    currentSpeed = Config.Speeds[index].speed
-    FollowCamMode = true
+    local index = 1
+    local currentSpeed = Config.Speeds[index].speed
+    local followCamMode = true
 
     while true do
         Citizen.Wait(1)
 
         if IsControlJustPressed(1, Config.Controls.openKey) then
-            noclipActive = not noclipActive
-
-            if IsPedInAnyVehicle(PlayerPedId(), false) then
-                noclipEntity = GetVehiclePedIsIn(PlayerPedId(), false)
-            else
-                noclipEntity = PlayerPedId()
-            end
-            
-            if noclipActive then
-                SetEntityVisible(noclipEntity, false, false);
-                SetEntityAlpha(PlayerPedId(), 51, 0)
-                if IsPedInAnyVehicle(PlayerPedId(), false) then
-                    SetEntityAlpha(noclipEntity, 51, 0)
-                end
-            else
-                SetEntityVisible(noclipEntity, true, false);
-                ResetEntityAlpha(PlayerPedId())
-                if IsPedInAnyVehicle(PlayerPedId(), false) then
-                    ResetEntityAlpha(noclipEntity)
-                end
-            end
-
-            if Config.FrozenPosition then SetEntityHeading(noclipEntity, GetEntityHeading(noclipEntity)+180) end
-            SetEntityCollision(noclipEntity, not noclipActive, not noclipActive)
-            FreezeEntityPosition(noclipEntity, noclipActive)
-            SetEntityInvincible(noclipEntity, noclipActive)
-            SetVehicleRadioEnabled(noclipEntity, not noclipActive)
-            SetEveryoneIgnorePlayer(noclipEntity, noclipActive);
-            SetPoliceIgnorePlayer(noclipEntity, noclipActive);
+            TriggerServerEvent('admin:noClip')
         end
 
         if noclipActive then
@@ -113,7 +85,7 @@ Citizen.CreateThread(function()
             local zoff = 0.0
 
             if IsDisabledControlJustPressed(1, Config.Controls.camMode) then
-                FollowCamMode = not FollowCamMode
+                followCamMode = not followCamMode
             end
 
             if IsControlJustPressed(1, Config.Controls.changeSpeed) then
@@ -157,11 +129,11 @@ Citizen.CreateThread(function()
                 end
 			end
 
-            if not FollowCamMode and IsDisabledControlPressed(0, Config.Controls.turnLeft) then
+            if not followCamMode and IsDisabledControlPressed(0, Config.Controls.turnLeft) then
                 SetEntityHeading(PlayerPedId(), GetEntityHeading(PlayerPedId())+Config.Offsets.h)
 			end
 			
-            if not FollowCamMode and IsDisabledControlPressed(0, Config.Controls.turnRight) then
+            if not followCamMode and IsDisabledControlPressed(0, Config.Controls.turnRight) then
                 SetEntityHeading(PlayerPedId(), GetEntityHeading(PlayerPedId())-Config.Offsets.h)
 			end
 			
@@ -181,7 +153,7 @@ Citizen.CreateThread(function()
             else 
                 SetEntityRotation(noclipEntity, 0.0, 0.0, 0.0, 0, false)
             end
-            if(FollowCamMode) then
+            if(followCamMode) then
                 SetEntityHeading(noclipEntity, GetGameplayCamRelativeHeading());
             else
                 SetEntityHeading(noclipEntity, heading);
@@ -194,4 +166,37 @@ Citizen.CreateThread(function()
             SetLocalPlayerVisibleLocally(true);
         end
     end
+end)
+
+RegisterNetEvent('admin:enableNoClip')
+AddEventHandler('admin:enableNoClip', function()
+    noclipActive = not noclipActive
+
+    if IsPedInAnyVehicle(PlayerPedId(), false) then
+        noclipEntity = GetVehiclePedIsIn(PlayerPedId(), false)
+    else
+        noclipEntity = PlayerPedId()
+    end
+    
+    if noclipActive then
+        SetEntityVisible(noclipEntity, false, false);
+        SetEntityAlpha(PlayerPedId(), 51, 0)
+        if IsPedInAnyVehicle(PlayerPedId(), false) then
+            SetEntityAlpha(noclipEntity, 51, 0)
+        end
+    else
+        SetEntityVisible(noclipEntity, true, false);
+        ResetEntityAlpha(PlayerPedId())
+        if IsPedInAnyVehicle(PlayerPedId(), false) then
+            ResetEntityAlpha(noclipEntity)
+        end
+    end
+
+    if Config.FrozenPosition then SetEntityHeading(noclipEntity, GetEntityHeading(noclipEntity)+180) end
+    SetEntityCollision(noclipEntity, not noclipActive, not noclipActive)
+    FreezeEntityPosition(noclipEntity, noclipActive)
+    SetEntityInvincible(noclipEntity, noclipActive)
+    SetVehicleRadioEnabled(noclipEntity, not noclipActive)
+    SetEveryoneIgnorePlayer(noclipEntity, noclipActive);
+    SetPoliceIgnorePlayer(noclipEntity, noclipActive);
 end)

@@ -31,4 +31,18 @@ Config = {
     },
 
     FrozenPosition = false, -- Toggle "frozen" position for noclipping player
+
+    -- Permissions management (adding a group or a steam id requires a resource restart [or just wait a regular server restart :-)])
+
+    -- Keep in mind that using commands such as "/setgrup" from esx will not edit database directly but will add aces to the user 
+    -- so you still need to wait a bit for autosave to do its job or save the player manually in case you need this immediately
+
+    AllowedGroups = {
+        'admin',
+        'helper',
+    },
+
+    AllowedSteamIDs = {
+        'steam:11000011192c5de',
+    },
 }
