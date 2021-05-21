@@ -20,70 +20,52 @@ Citizen.CreateThread(function()
         end
 
         if noclipActive then
-            if Config.DisableWeaponWheel then
-                DisableControlAction(0, 37, true)
-                if(IsPedArmed(GetPlayerPed(-1), 1 | 2 | 4)) then 
-                    SetCurrentPedWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_UNARMED"), 1)
-                end
-            end
-
             if not IsHudHidden() then
-                PushScaleformMovieFunction(scaleform, "CLEAR_ALL")
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "CLEAR_ALL")
+                EndScaleformMovieMethod()
                 
-                PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-                PushScaleformMovieFunctionParameterInt(5)
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(2, Config.Controls.openKey, true))
-                BeginTextCommandScaleformString("STRING")
-                AddTextComponentScaleform(_U("noclip_toggle"))
-                EndTextCommandScaleformString()
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT")
+                ScaleformMovieMethodAddParamInt(6)
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(2, Config.Controls.openKey, true))
+                PushScaleformMovieMethodParameterString(_U("noclip_toggle"))
+                EndScaleformMovieMethod()
 
-                PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-                PushScaleformMovieFunctionParameterInt(4)
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(2, Config.Controls.camMode, true))
-                BeginTextCommandScaleformString("STRING")
-                AddTextComponentScaleform(_U("noclip_camera"))
-                EndTextCommandScaleformString()
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT")
+                ScaleformMovieMethodAddParamInt(5)
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(2, Config.Controls.camMode, true))
+                PushScaleformMovieMethodParameterString(_U("noclip_camera"))
+                EndScaleformMovieMethod()
 
-                PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-                PushScaleformMovieFunctionParameterInt(3)
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(2, Config.Controls.goDown, true))
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(2, Config.Controls.goUp, true))
-                BeginTextCommandScaleformString("STRING")
-                AddTextComponentScaleform(_U("noclip_updown"))
-                EndTextCommandScaleformString()
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT")
+                ScaleformMovieMethodAddParamInt(4)
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(2, Config.Controls.goDown, true))
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(2, Config.Controls.goUp, true))
+                PushScaleformMovieMethodParameterString(_U("noclip_updown"))
+                EndScaleformMovieMethod()
 
-                PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-                PushScaleformMovieFunctionParameterInt(2)
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(1, Config.Controls.turnRight, true))
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(1, Config.Controls.turnLeft, true))
-                BeginTextCommandScaleformString("STRING")
-                AddTextComponentScaleform(_U("noclip_leftright"))
-                EndTextCommandScaleformString()
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT")
+                ScaleformMovieMethodAddParamInt(3)
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(1, Config.Controls.turnRight, true))
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(1, Config.Controls.turnLeft, true))
+                PushScaleformMovieMethodParameterString(_U("noclip_leftright"))
+                EndScaleformMovieMethod()
 
-                PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-                PushScaleformMovieFunctionParameterInt(1)
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(1, Config.Controls.goBackward, true))
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(1, Config.Controls.goForward, true))
-                BeginTextCommandScaleformString("STRING")
-                AddTextComponentScaleform(_U("noclip_forbackwards"))
-                EndTextCommandScaleformString()
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT")
+                ScaleformMovieMethodAddParamInt(2)
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(1, Config.Controls.goBackward, true))
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(1, Config.Controls.goForward, true))
+                PushScaleformMovieMethodParameterString(_U("noclip_forbackwards"))
+                EndScaleformMovieMethod()
 
-                PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
-                PushScaleformMovieFunctionParameterInt(0)
-                N_0xe83a3e3557a56640(GetControlInstructionalButton(2, Config.Controls.changeSpeed, true))
-                BeginTextCommandScaleformString("STRING")
-                AddTextComponentScaleform(_U("noclip_speed", Config.Speeds[index].label))
-                EndTextCommandScaleformString()
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "SET_DATA_SLOT")
+                ScaleformMovieMethodAddParamInt(1)
+                PushScaleformMovieMethodParameterString(GetControlInstructionalButton(2, Config.Controls.changeSpeed, true))
+                PushScaleformMovieMethodParameterString(_U("noclip_speed", Config.Speeds[index].label))
+                EndScaleformMovieMethod()
 
-                PushScaleformMovieFunction(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
-                PopScaleformMovieFunctionVoid()
+                BeginScaleformMovieMethod(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
+                ScaleformMovieMethodAddParamInt(0)
+                EndScaleformMovieMethod()
 
                 DrawScaleformMovieFullscreen(scaleform)            
             end
@@ -196,6 +178,13 @@ AddEventHandler('admin:enableNoClip', function()
         ResetEntityAlpha(PlayerPedId())
         if IsPedInAnyVehicle(PlayerPedId(), false) then
             ResetEntityAlpha(noclipEntity)
+        end
+    end
+
+    if Config.DisableWeaponWheel and noclipActive then
+        DisableControlAction(0, 37, true)
+        if(IsPedArmed(GetPlayerPed(-1), 1 | 2 | 4)) then 
+            SetCurrentPedWeapon(GetPlayerPed(-1), GetHashKey("WEAPON_UNARMED"), 1)
         end
     end
 

@@ -14,7 +14,6 @@ client_scripts {
 
 server_scripts {
   '@mysql-async/lib/MySQL.lua',
-  '@async/async.lua',
 
   'locale.lua',
   'locales/en.lua',
@@ -25,6 +24,5 @@ server_scripts {
 file 'locale.js'
 
 dependencies {
-	'mysql-async',
-	'async'
+	'mysql-async'
 }
