@@ -5,7 +5,6 @@
 ## Requirements
 
 - [mysql-async](https://github.com/brouznouf/fivem-mysql-async)
-- [async](https://github.com/ESX-Org/async)
 
 ## Features
 
