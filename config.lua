@@ -30,6 +30,8 @@ Config = {
         h = 3, -- Rotation movement speed multiplier
     },
 
+    EnableHUD = true,
+
     FrozenPosition = false, -- Toggle "frozen" position while noclip is active
 
     DisableWeaponWheel = false, -- Disable weapon wheel while noclip is active

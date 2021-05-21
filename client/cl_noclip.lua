@@ -24,7 +24,7 @@ Citizen.CreateThread(function()
         end
 
         if noclipActive then
-            if not IsHudHidden() then
+            if not IsHudHidden() and Config.EnableHUD then
                 BeginScaleformMovieMethod(scaleform, "CLEAR_ALL")
                 EndScaleformMovieMethod()
                 
