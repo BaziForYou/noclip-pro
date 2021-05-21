@@ -16,7 +16,11 @@ Citizen.CreateThread(function()
         Citizen.Wait(1)
 
         if IsControlJustPressed(1, Config.Controls.openKey) then
-            TriggerServerEvent('admin:noClip')
+            if noclipActive then
+                TriggerEvent('admin:toggleNoClip')
+            else
+                TriggerServerEvent('admin:noClip')
+            end
         end
 
         if noclipActive then
@@ -157,8 +161,8 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent('admin:enableNoClip')
-AddEventHandler('admin:enableNoClip', function()
+RegisterNetEvent('admin:toggleNoClip')
+AddEventHandler('admin:toggleNoClip', function()
     noclipActive = not noclipActive
 
     if IsPedInAnyVehicle(PlayerPedId(), false) then

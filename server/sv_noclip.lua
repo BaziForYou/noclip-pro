@@ -4,12 +4,12 @@ AddEventHandler('admin:noClip', function(player)
     local steamID = GetSteamID(source)
     local playerGroup = GetPlayerGroup(source)
     local authorized = false
-    
+
     if Config.AllowedGroups then
         if playerGroup then
             for k,v in ipairs(Config.AllowedGroups) do
                 if v == playerGroup then
-                    TriggerClientEvent('admin:enableNoClip', source)
+                    TriggerClientEvent('admin:toggleNoClip', source)
                     authorized = true
                 end
             end
@@ -21,7 +21,7 @@ AddEventHandler('admin:noClip', function(player)
             if steamID then 
                 for k,v in ipairs(Config.AllowedSteamIDs) do
                     if v == steamID then
-                        TriggerClientEvent('admin:enableNoClip', source)
+                        TriggerClientEvent('admin:toggleNoClip', source)
                     end
                 end
             end
@@ -48,9 +48,9 @@ function GetPlayerGroup(src)
 
     license = string.sub(license, 9)
 
-    local player = MySQL.Sync.fetchAll('SELECT accounts, job, job_grade, `group`, loadout, position, inventory FROM users WHERE identifier = @identifier', {
+    local player = MySQL.Sync.fetchAll('SELECT `group` FROM users WHERE identifier = @identifier', {
         ['@identifier'] = license
     })
-    
+
     return player[1].group or false
 end
